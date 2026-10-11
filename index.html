@@ -68,5 +68,30 @@ footer{text-align:center;color:var(--muted);padding:24px 0;font-size:.9rem}
 </section>
 </main>
 <footer>© بسطة شوي. جميع الحقوق محفوظة</footer>
-<style>#callBtn{position:fixed;bottom:24px;left:24px;width:60px;height:60px;border-radius:50%;background:var(--accent);color:#062022;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 0 rgba(46,230,224,.7);z-index:999;animation:pulse 2s infinite;transition:transform .2s}#callBtn:hover{transform:scale(1.1)}@keyframes pulse{0%{box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 0 rgba(46,230,224,.7)}70%{box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 15px rgba(46,230,224,0)}100%{box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 0 rgba(46,230,224,0)}}</style><a id="callBtn" href="tel:0507296282" aria-label="اتصل بنا">📞</a></body>
+<style>#callBtn{position:fixed;bottom:24px;left:24px;width:60px;height:60px;border-radius:50%;background:var(--accent);color:#062022;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 0 rgba(46,230,224,.7);z-index:999;animation:pulse 2s infinite;transition:transform .2s}#callBtn:hover{transform:scale(1.1)}@keyframes pulse{0%{box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 0 rgba(46,230,224,.7)}70%{box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 15px rgba(46,230,224,0)}100%{box-shadow:0 4px 20px rgba(46,230,224,.5),0 0 0 0 rgba(46,230,224,0)}}</style><a id="callBtn" href="tel:0507296282" aria-label="اتصل بنا">📞</a><script>
+    function updateShopStatus() {
+        const statusElement = document.getElementById('shopStatus');
+        if (!statusElement) return; // Exit if the element doesn't exist
+
+        const now = new Date();
+        const hour = now.getHours();
+
+        // ساعات العمل من 7 مساءً (19) حتى منتصف الليل (24 -> 0)
+        const isOpen = hour >= 19 || hour < 1; // 19:00 to 00:59
+
+        if (isOpen) {
+            statusElement.textContent = '🟢 مفتوح الآن — نستقبلك حتى منتصف الليل';
+            statusElement.style.color = '#2ee6e0'; // اللون السماوي
+        } else {
+            statusElement.textContent = '🔴 مغلق حاليًا — نفتح يومياً الساعة 7 مساءً';
+            statusElement.style.color = '#c96a3d'; // اللون البرتقالي (warm)
+        }
+    }
+
+    // تحديث الحالة عند تحميل الصفحة
+    updateShopStatus();
+
+    // (اختياري) تحديث الحالة كل دقيقة، لمتابعة تغيير الوقت
+    setInterval(updateShopStatus, 60000); 
+</script></body>
 </html>
